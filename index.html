@@ -1,0 +1,2409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EYE J Digital Land Survey — Professional Total Station, DGPS, GNSS & Theodolite surveys across Kerala, Coimbatore, Ooty & Bangalore. 15+ years, 3,200 pile points, 4.9★ Google rating.">
+  <title>EYE J Digital Land Survey | Precision Surveying & Geospatial Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       CSS CUSTOM PROPERTIES & RESET
+       ======================================== */
+    :root {
+      /* Colors */
+      --bg-deep: #0a0c0e;
+      --bg-card: #111418;
+      --bg-elevated: #181c22;
+      --fg-primary: #f0f2f5;
+      --fg-secondary: #a8adb8;
+      --fg-muted: #6b7280;
+      --accent-lime: #b8ff2e;
+      --accent-lime-dim: #9ad626;
+      --accent-cyan: #00d4e6;
+      --accent-cyan-dim: #00a8b8;
+      --border-subtle: #2a2f38;
+      --border-bright: #3a404c;
+      
+      /* Typography */
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Space Grotesk', sans-serif;
+      
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-2xl: 6rem;
+      --space-3xl: 10rem;
+      
+      /* Sizing */
+      --container-max: 1280px;
+      --nav-height: 80px;
+      
+      /* Transitions */
+      --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+      --duration-fast: 200ms;
+      --duration-normal: 400ms;
+      --duration-slow: 700ms;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :root {
+        --duration-fast: 0ms;
+        --duration-normal: 0ms;
+        --duration-slow: 0ms;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { scroll-behavior: smooth; }
+    
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-deep);
+      color: var(--fg-primary);
+      line-height: 1.6;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--accent-lime); color: var(--bg-deep); }
+
+    /* ========================================
+       UTILITY CLASSES
+       ======================================== */
+    .container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--space-lg); }
+    
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; color: var(--fg-primary); }
+    
+    .display-xl { font-size: clamp(3rem, 8vw, 6.5rem); letter-spacing: -0.03em; }
+    .display-lg { font-size: clamp(2.25rem, 5vw, 4rem); letter-spacing: -0.02em; }
+    .display-md { font-size: clamp(1.75rem, 3.5vw, 2.75rem); letter-spacing: -0.01em; }
+    .display-sm { font-size: clamp(1.25rem, 2.5vw, 1.875rem); letter-spacing: -0.005em; }
+    
+    .text-lg { font-size: 1.125rem; line-height: 1.7; }
+    .text-base { font-size: 1rem; line-height: 1.7; }
+    .text-sm { font-size: 0.875rem; line-height: 1.6; }
+    .text-xs { font-size: 0.75rem; line-height: 1.5; letter-spacing: 0.05em; text-transform: uppercase; }
+    
+    .text-accent { color: var(--accent-lime); }
+    .text-cyan { color: var(--accent-cyan); }
+    .text-muted { color: var(--fg-muted); }
+    .text-secondary { color: var(--fg-secondary); }
+
+    .font-light { font-weight: 300; }
+    .font-normal { font-weight: 400; }
+    .font-medium { font-weight: 500; }
+    .font-semibold { font-weight: 600; }
+    .font-bold { font-weight: 700; }
+    .font-extrabold { font-weight: 800; }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs);
+      padding: 1rem 2rem; font-family: var(--font-body); font-size: 0.875rem; font-weight: 600;
+      letter-spacing: 0.02em; text-decoration: none; border: none; cursor: pointer;
+      border-radius: 2px; transition: all var(--duration-fast) var(--ease-smooth);
+      position: relative; overflow: hidden; white-space: nowrap;
+    }
+    
+    .btn::before {
+      content: ''; position: absolute; inset: 0; transform: translateX(-101%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: transform var(--duration-normal) var(--ease-smooth);
+    }
+    
+    .btn:hover::before { transform: translateX(101%); }
+
+    .btn-primary {
+      background: var(--accent-lime); color: var(--bg-deep);
+      box-shadow: 0 4px 24px rgba(184, 255, 46, 0.25);
+    }
+    .btn-primary:hover { background: var(--accent-lime-dim); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(184, 255, 46, 0.35); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+      background: transparent; color: var(--fg-primary); border: 1px solid var(--border-bright);
+    }
+    .btn-secondary:hover { border-color: var(--accent-lime); color: var(--accent-lime); background: rgba(184, 255, 46, 0.05); }
+
+    .btn-ghost {
+      background: transparent; color: var(--fg-secondary); border: none; padding: 0.5rem 0;
+    }
+    .btn-ghost:hover { color: var(--accent-lime); }
+
+    .btn-call {
+      background: var(--accent-lime); color: var(--bg-deep); padding: 1rem 1.5rem;
+      box-shadow: 0 4px 24px rgba(184, 255, 46, 0.3);
+    }
+    .btn-call:hover { background: var(--accent-lime-dim); }
+
+    /* ========================================
+       ANIMATION KEYFRAMES
+       ======================================== */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes drawLine { from { stroke-dashoffset: 100%; } to { stroke-dashoffset: 0%; } }
+    @keyframes pulseGlow { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+    @keyframes floatSlow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes rotateSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes scanLine { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+    @keyframes coordinateTick { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+    .animate-fade-up { animation: fadeUp var(--duration-slow) var(--ease-smooth) forwards; opacity: 0; }
+    .animate-fade-in { animation: fadeIn var(--duration-normal) var(--ease-smooth) forwards; opacity: 0; }
+    .animate-slide-left { animation: slideInLeft var(--duration-slow) var(--ease-smooth) forwards; opacity: 0; }
+    .animate-slide-right { animation: slideInRight var(--duration-slow) var(--ease-smooth) forwards; opacity: 0; }
+    
+    .delay-1 { animation-delay: 100ms; }
+    .delay-2 { animation-delay: 200ms; }
+    .delay-3 { animation-delay: 300ms; }
+    .delay-4 { animation-delay: 400ms; }
+    .delay-5 { animation-delay: 500ms; }
+    .delay-6 { animation-delay: 600ms; }
+
+    /* ========================================
+       BACKGROUND PATTERNS
+       ======================================== */
+    .grid-pattern {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: 
+        linear-gradient(rgba(184,255,46,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,255,46,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    
+    .grid-pattern--fine {
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    .contour-lines {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath fill='none' stroke='%23b8ff2e' stroke-width='0.3' opacity='0.04' d='M0,50 Q200,20 400,50 M0,150 Q200,120 400,150 M0,250 Q200,220 400,250 M0,350 Q200,320 400,350'/%3E%3C/svg%3E");
+      background-size: 400px 400px;
+    }
+
+    .scan-line {
+      position: absolute; inset: 0; pointer-events: none; z-index: 1;
+      background: linear-gradient(180deg, transparent 40%, rgba(184,255,46,0.02) 50%, transparent 60%);
+      background-size: 100% 4px;
+      animation: scanLine 8s linear infinite;
+    }
+
+    /* ========================================
+       NAVIGATION
+       ======================================== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: var(--nav-height); background: rgba(10, 12, 14, 0.85);
+      backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle);
+      transition: all var(--duration-normal) var(--ease-smooth);
+    }
+    
+    .nav.scrolled { background: rgba(10, 12, 14, 0.95); box-shadow: 0 4px 32px rgba(0,0,0,0.4); }
+
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+
+    .nav__brand { display: flex; flex-direction: column; line-height: 1; text-decoration: none; color: var(--fg-primary); }
+    .nav__brand-top { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; letter-spacing: 0.02em; color: var(--fg-primary); }
+    .nav__brand-bottom { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-lime); margin-top: -4px; }
+
+    .nav__links { display: flex; align-items: center; gap: var(--space-xl); list-style: none; }
+    .nav__link { color: var(--fg-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; transition: color var(--duration-fast) var(--ease-smooth); position: relative; }
+    .nav__link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent-lime); transition: width var(--duration-normal) var(--ease-smooth); }
+    .nav__link:hover { color: var(--fg-primary); }
+    .nav__link:hover::after { width: 100%; }
+    .nav__link--active { color: var(--accent-lime); }
+    .nav__link--active::after { width: 100%; }
+
+    .nav__cta { display: flex; align-items: center; gap: var(--space-md); }
+
+    .nav__mobile-toggle { display: none; background: none; border: none; color: var(--fg-primary); padding: var(--space-xs); cursor: pointer; }
+
+    @media (max-width: 768px) {
+      .nav__mobile-toggle { display: flex; }
+      .nav__links { position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--bg-deep); flex-direction: column; padding: var(--space-xl); gap: var(--space-md); border-bottom: 1px solid var(--border-subtle); transform: translateY(-100%); opacity: 0; visibility: hidden; transition: all var(--duration-normal) var(--ease-smooth); }
+      .nav__links.open { transform: translateY(0); opacity: 1; visibility: visible; }
+      .nav__cta:not(.nav__cta--mobile) { display: none; }
+      .nav__cta--mobile { display: flex; }
+    }
+
+    /* ========================================
+       HERO SECTION
+       ======================================== */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden;
+      padding-top: var(--nav-height);
+    }
+
+    .hero__bg { position: absolute; inset: 0; z-index: 0; }
+    .hero__image { width: 100%; height: 100%; object-fit: cover; }
+    .hero__overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,12,14,0.95) 0%, rgba(10,12,14,0.7) 50%, rgba(10,12,14,0.9) 100%); z-index: 1; }
+    .hero__overlay::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 30%, rgba(184,255,46,0.05) 0%, transparent 60%); }
+
+    .hero__content { position: relative; z-index: 2; width: 100%; }
+    .hero__coordinates { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-xl); font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--accent-lime); }
+    .hero__coordinates::before { content: ''; width: 60px; height: 1px; background: linear-gradient(90deg, var(--accent-lime), transparent); }
+    .hero__coord-value { font-variant-numeric: tabular-nums; }
+    .hero__coord-label { color: var(--fg-muted); font-size: 0.625rem; }
+
+    .hero__headline { margin-bottom: var(--space-lg); line-height: 1.05; }
+    .hero__subheadline { max-width: 60ch; margin-bottom: var(--space-xl); font-size: 1.125rem; color: var(--fg-secondary); line-height: 1.7; }
+    
+    .hero__cta-group { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md); margin-bottom: var(--space-2xl); }
+    
+    .hero__phone { display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 2px; color: var(--fg-secondary); font-size: 0.875rem; font-weight: 500; transition: all var(--duration-fast) var(--ease-smooth); }
+    .hero__phone:hover { border-color: var(--accent-lime); color: var(--accent-lime); background: rgba(184,255,46,0.05); }
+    .hero__phone-icon { width: 20px; height: 20px; color: var(--accent-lime); flex-shrink: 0; }
+
+    .hero__tech-overlay { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+    .hero__tech-layer { position: absolute; width: 100%; height: 100%; }
+    
+    /* Survey overlay graphics */
+    .survey-marker { position: absolute; width: 24px; height: 24px; border: 2px solid var(--accent-lime); border-radius: 50%; transform: translate(-50%, -50%); animation: pulseGlow 3s ease-in-out infinite; }
+    .survey-marker::before { content: ''; position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; background: var(--accent-lime); border-radius: 50%; transform: translate(-50%, -50%); }
+    .survey-marker::after { content: attr(data-elevation); position: absolute; top: -1.5rem; left: 50%; transform: translateX(-50%); font-size: 0.625rem; color: var(--accent-lime); white-space: nowrap; font-family: var(--font-body); font-variant-numeric: tabular-nums; }
+
+    .cad-line { position: absolute; border: 1px solid rgba(184,255,46,0.3); transform-origin: left center; }
+    .cad-line--dashed { border-style: dashed; border-width: 1px 0 0 0; }
+
+    .benchmark-label { position: absolute; font-family: var(--font-body); font-size: 0.625rem; color: var(--accent-cyan); letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+    .benchmark-label::before { content: 'BM '; }
+
+    .elevation-point { position: absolute; font-family: var(--font-body); font-size: 0.6875rem; color: var(--fg-secondary); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .elevation-point::before { content: '+'; color: var(--accent-lime); }
+
+    /* ========================================
+       STATISTICS STRIP
+       ======================================== */
+    .stats { padding: var(--space-2xl) 0; position: relative; border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+    .stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
+    .stat-item { text-align: center; position: relative; }
+    .stat-item::after { content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 1px; height: 60%; background: linear-gradient(180deg, transparent, var(--border-subtle), transparent); }
+    .stat-item:last-child::after { display: none; }
+    .stat__value { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1; color: var(--accent-lime); font-variant-numeric: tabular-nums; }
+    .stat__label { display: block; margin-top: var(--space-xs); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); line-height: 1.4; }
+    .stat__label strong { color: var(--fg-secondary); font-weight: 600; }
+
+    @media (max-width: 768px) {
+      .stats__grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+      .stat-item:nth-child(2)::after { display: none; }
+      .stat-item::after { height: 40%; }
+    }
+
+    /* ========================================
+       SECTION BASE
+       ======================================== */
+    .section { padding: var(--space-3xl) 0; position: relative; }
+    .section--alt { background: var(--bg-card); }
+    .section__header { max-width: 700px; margin-bottom: var(--space-2xl); }
+    .section__eyebrow { display: inline-block; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-lime); margin-bottom: var(--space-md); }
+    .section__title { margin-bottom: var(--space-md); }
+    .section__description { color: var(--fg-secondary); font-size: 1.125rem; line-height: 1.7; }
+
+    /* ========================================
+       ABOUT SECTION
+       ======================================== */
+    .about { overflow: hidden; }
+    .about__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3xl); align-items: center; }
+    .about__image-wrapper { position: relative; aspect-ratio: 4/3; border-radius: 4px; overflow: hidden; background: var(--bg-elevated); }
+    .about__image { width: 100%; height: 100%; object-fit: cover; transition: transform var(--duration-slow) var(--ease-smooth); }
+    .about__image-wrapper:hover .about__image { transform: scale(1.03); }
+    .about__image-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(10,12,14,0.8) 100%); pointer-events: none; }
+    .about__badge { position: absolute; bottom: var(--space-lg); left: var(--space-lg); right: var(--space-lg); display: flex; align-items: center; justify-content: space-between; padding: var(--space-md); background: rgba(10,12,14,0.9); border: 1px solid var(--border-bright); border-radius: 2px; backdrop-filter: blur(10px); }
+    .badge__number { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; color: var(--accent-lime); line-height: 1; }
+    .badge__text { font-size: 0.75rem; letter-spacing: 0.05em; color: var(--fg-secondary); max-width: 150px; line-height: 1.4; }
+    .badge__text strong { color: var(--fg-primary); }
+
+    .about__content { padding-right: var(--space-xl); }
+    .about__text { margin-bottom: var(--space-xl); }
+    .about__text p { margin-bottom: var(--space-md); }
+    .about__highlights { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+    .highlight { padding: var(--space-md); background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 2px; transition: all var(--duration-normal) var(--ease-smooth); }
+    .highlight:hover { border-color: var(--accent-lime); transform: translateY(-2px); }
+    .highlight__value { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; color: var(--accent-lime); line-height: 1; margin-bottom: var(--space-xs); }
+    .highlight__label { font-size: 0.75rem; letter-spacing: 0.05em; color: var(--fg-muted); }
+
+    @media (max-width: 900px) {
+      .about__grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
+      .about__content { padding-right: 0; }
+      .about__image-wrapper { max-width: 600px; margin: 0 auto; }
+    }
+
+    @media (max-width: 600px) {
+      .about__highlights { grid-template-columns: 1fr; }
+    }
+
+    /* ========================================
+       TECHNOLOGY SECTION
+       ======================================== */
+    .tech__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
+    .tech-card { position: relative; padding: var(--space-xl); background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 4px; transition: all var(--duration-normal) var(--ease-smooth); overflow: hidden; }
+    .tech-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent-lime), var(--accent-cyan)); transform: scaleX(0); transform-origin: left; transition: transform var(--duration-normal) var(--ease-smooth); }
+    .tech-card:hover { border-color: var(--accent-lime); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .tech-card:hover::before { transform: scaleX(1); }
+    
+    .tech-card__icon { width: 56px; height: 56px; margin-bottom: var(--space-lg); stroke: var(--accent-lime); stroke-width: 1.5; }
+    .tech-card__title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin-bottom: var(--space-sm); }
+    .tech-card__desc { color: var(--fg-secondary); font-size: 0.9375rem; line-height: 1.6; }
+
+    @media (max-width: 900px) { .tech__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .tech__grid { grid-template-columns: 1fr; } }
+
+    /* ========================================
+       SERVICES SECTION
+       ======================================== */
+    .services__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
+    .service-card { position: relative; padding: var(--space-xl); background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 4px; transition: all var(--duration-normal) var(--ease-smooth); display: flex; flex-direction: column; }
+    .service-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(184,255,46,0.03) 0%, transparent 50%); opacity: 0; transition: opacity var(--duration-normal) var(--ease-smooth); }
+    .service-card:hover { border-color: var(--border-bright); transform: translateY(-4px); }
+    .service-card:hover::before { opacity: 1; }
+    
+    .service-card__number { font-family: var(--font-display); font-size: 4rem; font-weight: 800; color: rgba(184,255,46,0.08); line-height: 1; margin-bottom: var(--space-md); transition: color var(--duration-normal) var(--ease-smooth); }
+    .service-card:hover .service-card__number { color: rgba(184,255,46,0.15); }
+    
+    .service-card__title { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; margin-bottom: var(--space-sm); line-height: 1.3; }
+    .service-card__desc { color: var(--fg-secondary); font-size: 0.9375rem; line-height: 1.6; flex: 1; }
+
+    @media (max-width: 900px) { .services__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .services__grid { grid-template-columns: 1fr; } .service-card__number { font-size: 3rem; } }
+
+    /* ========================================
+       FIELD LOG / CASE STUDIES
+       ======================================== */
+    .field-log { overflow: hidden; }
+    .field-log__timeline { position: relative; }
+    .field-log__timeline::before { content: ''; position: absolute; left: 24px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--accent-lime), var(--border-subtle)); }
+    
+    .field-log__item { display: grid; grid-template-columns: 120px 1fr; gap: var(--space-lg); padding: var(--space-xl) 0; position: relative; }
+    .field-log__item::before { content: ''; position: absolute; left: 18px; top: var(--space-xl); width: 12px; height: 12px; border: 2px solid var(--border-bright); border-radius: 50%; background: var(--bg-deep); z-index: 1; transition: all var(--duration-normal) var(--ease-smooth); }
+    .field-log__item:hover::before { border-color: var(--accent-lime); box-shadow: 0 0 0 4px rgba(184,255,46,0.15); }
+    
+    .field-log__date { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--accent-lime); text-align: right; padding-right: var(--space-md); writing-mode: vertical-rl; text-orientation: mixed; }
+    .field-log__content { padding-top: var(--space-md); }
+    .field-log__title { font-family: var(--font-display); font-size: 1.375rem; font-weight: 700; margin-bottom: var(--space-sm); }
+    .field-log__desc { color: var(--fg-secondary); max-width: 60ch; }
+    .field-log__tags { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-md); }
+    .field-log__tag { font-size: 0.6875rem; padding: 0.25rem 0.75rem; background: rgba(184,255,46,0.1); color: var(--accent-lime); border-radius: 100px; font-weight: 500; letter-spacing: 0.02em; }
+
+    @media (max-width: 768px) {
+      .field-log__timeline::before { left: 12px; }
+      .field-log__item { grid-template-columns: 1fr; gap: var(--space-sm); padding-left: 40px; }
+      .field-log__item::before { left: 6px; top: 1.5rem; }
+      .field-log__date { writing-mode: horizontal-tb; text-align: left; font-size: 1rem; padding-right: 0; color: var(--fg-muted); }
+    }
+
+    /* ========================================
+       VISUAL GALLERY
+       ======================================== */
+    .gallery { background: var(--bg-deep); }
+    .gallery__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+    .gallery__item { position: relative; aspect-ratio: 1; border-radius: 2px; overflow: hidden; background: var(--bg-elevated); cursor: pointer; }
+    .gallery__item--wide { grid-column: span 2; }
+    .gallery__item--tall { grid-row: span 2; }
+    .gallery__image { width: 100%; height: 100%; object-fit: cover; transition: transform var(--duration-slow) var(--ease-smooth); }
+    .gallery__item:hover .gallery__image { transform: scale(1.08); }
+    .gallery__caption { position: absolute; bottom: 0; left: 0; right: 0; padding: var(--space-md); background: linear-gradient(180deg, transparent, rgba(10,12,14,0.95)); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-secondary); opacity: 0; transform: translateY(10px); transition: all var(--duration-normal) var(--ease-smooth); }
+    .gallery__item:hover .gallery__caption { opacity: 1; transform: translateY(0); color: var(--accent-lime); }
+    .gallery__caption strong { color: var(--fg-primary); }
+
+    @media (max-width: 900px) {
+      .gallery__grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery__item--wide { grid-column: span 2; }
+      .gallery__item--tall { grid-row: span 1; }
+    }
+    @media (max-width: 600px) {
+      .gallery__grid { grid-template-columns: 1fr; }
+      .gallery__item--wide { grid-column: span 1; }
+    }
+
+    /* ========================================
+       CAD OUTPUT SECTION
+       ======================================== */
+    .cad-output { position: relative; overflow: hidden; }
+    .cad-output__bg { position: absolute; inset: 0; background: var(--bg-deep); z-index: 0; }
+    .cad-output__grid { position: absolute; inset: 0; opacity: 0.03; background-image: linear-gradient(rgba(184,255,46,1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,255,46,1) 1px, transparent 1px); background-size: 40px 40px; z-index: 1; }
+    
+    .cad-output__content { position: relative; z-index: 2; text-align: center; max-width: 800px; margin: 0 auto; }
+    .cad-output__headline { margin-bottom: var(--space-xl); }
+    .cad-output__pipeline { display: flex; align-items: center; justify-content: center; gap: var(--space-md); margin: var(--space-2xl) 0; flex-wrap: wrap; }
+    .pipeline__stage { display: flex; flex-direction: column; align-items: center; gap: var(--space-sm); padding: var(--space-lg) var(--space-md); min-width: 140px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 2px; transition: all var(--duration-normal) var(--ease-smooth); position: relative; overflow: hidden; }
+    .pipeline__stage::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(184,255,46,0.05), transparent); opacity: 0; transition: opacity var(--duration-normal) var(--ease-smooth); }
+    .pipeline__stage:hover { border-color: var(--accent-lime); transform: translateY(-4px); }
+    .pipeline__stage:hover::before { opacity: 1; }
+    .pipeline__stage.active { border-color: var(--accent-lime); }
+    
+    .pipeline__icon { width: 48px; height: 48px; stroke: var(--accent-lime); stroke-width: 1.5; }
+    .pipeline__label { font-family: var(--font-display); font-size: 0.875rem; font-weight: 600; color: var(--fg-primary); }
+    .pipeline__label--format { font-size: 0.75rem; color: var(--accent-lime); letter-spacing: 0.05em; }
+    
+    .pipeline__arrow { width: 32px; height: 32px; stroke: var(--accent-lime); stroke-width: 2; fill: none; flex-shrink: 0; animation: floatSlow 2s ease-in-out infinite; }
+    
+    .cad-output__message { margin-top: var(--space-2xl); padding: var(--space-xl); background: rgba(184,255,46,0.03); border: 1px solid rgba(184,255,46,0.2); border-radius: 2px; }
+    .cad-output__message-text { font-size: 1rem; color: var(--fg-secondary); max-width: 600px; margin: 0 auto; }
+    .cad-output__message-text strong { color: var(--fg-primary); }
+
+    @media (max-width: 768px) {
+      .pipeline__arrow { display: none; }
+      .pipeline__stage { min-width: 120px; padding: var(--space-md); }
+    }
+
+    /* ========================================
+       WHY US SECTION
+       ======================================== */
+    .why__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
+    .why-card { padding: var(--space-xl); background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 4px; transition: all var(--duration-normal) var(--ease-smooth); }
+    .why-card:hover { border-color: var(--accent-lime); transform: translateY(-4px); }
+    .why-card__icon { width: 40px; height: 40px; stroke: var(--accent-lime); stroke-width: 2; margin-bottom: var(--space-md); }
+    .why-card__title { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; margin-bottom: var(--space-sm); }
+    .why-card__desc { color: var(--fg-secondary); font-size: 0.9375rem; line-height: 1.6; }
+
+    @media (max-width: 900px) { .why__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .why__grid { grid-template-columns: 1fr; } }
+
+    /* ========================================
+       REVIEWS SECTION
+       ======================================== */
+    .reviews { background: var(--bg-card); }
+    .reviews__header { text-align: center; max-width: 600px; margin: 0 auto var(--space-2xl); }
+    .reviews__rating { display: inline-flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-lg); padding: var(--space-md) var(--space-xl); background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 2px; }
+    .reviews__score { font-family: var(--font-display); font-size: 3rem; font-weight: 800; color: var(--accent-lime); line-height: 1; }
+    .reviews__stars { color: var(--accent-lime); letter-spacing: 0.1em; }
+    .reviews__meta { font-size: 0.875rem; color: var(--fg-muted); }
+
+    .reviews__slider { position: relative; overflow: hidden; }
+    .reviews__track { display: flex; gap: var(--space-lg); transition: transform var(--duration-slow) var(--ease-smooth); }
+    .review-card { flex: 0 0 calc(33.333% - var(--space-lg) * 0.66); min-width: 280px; padding: var(--space-xl); background: var(--bg-deep); border: 1px solid var(--border-subtle); border-radius: 4px; position: relative; transition: all var(--duration-normal) var(--ease-smooth); }
+    .review-card:hover { border-color: var(--border-bright); }
+    .review-card__quote { position: absolute; top: var(--space-lg); right: var(--space-lg); width: 48px; height: 48px; stroke: rgba(184,255,46,0.1); stroke-width: 2; fill: none; }
+    .review-card__text { color: var(--fg-secondary); font-size: 0.9375rem; line-height: 1.7; margin-bottom: var(--space-lg); position: relative; z-index: 1; }
+    .review-card__author { display: flex; align-items: center; gap: var(--space-md); }
+    .review-card__avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-lime), var(--accent-cyan)); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: var(--bg-deep); }
+    .review-card__name { font-weight: 600; color: var(--fg-primary); }
+    .review-card__role { font-size: 0.8125rem; color: var(--fg-muted); }
+
+    .reviews__nav { display: flex; align-items: center; justify-content: center; gap: var(--space-md); margin-top: var(--space-xl); }
+    .reviews__nav-btn { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 50%; color: var(--fg-secondary); cursor: pointer; transition: all var(--duration-fast) var(--ease-smooth); }
+    .reviews__nav-btn:hover { border-color: var(--accent-lime); color: var(--accent-lime); background: rgba(184,255,46,0.05); }
+    .reviews__nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .reviews__dots { display: flex; gap: var(--space-xs); }
+    .reviews__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-subtle); cursor: pointer; transition: all var(--duration-fast) var(--ease-smooth); }
+    .reviews__dot.active { background: var(--accent-lime); transform: scale(1.25); }
+
+    @media (max-width: 900px) { .review-card { flex: 0 0 calc(50% - var(--space-lg) * 0.5); } }
+    @media (max-width: 600px) { .review-card { flex: 0 0 100%; } .reviews__score { font-size: 2.5rem; } }
+
+    /* ========================================
+       SERVICE AREA MAP
+       ======================================== */
+    .service-area { position: relative; }
+    .service-area__map { position: relative; aspect-ratio: 16/9; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 4px; overflow: hidden; }
+    .service-area__svg { width: 100%; height: 100%; }
+    .service-area__region { fill: var(--bg-card); stroke: var(--border-subtle); stroke-width: 1; transition: all var(--duration-normal) var(--ease-smooth); }
+    .service-area__region:hover { fill: rgba(184,255,46,0.1); stroke: var(--accent-lime); }
+    .service-area__region--active { fill: rgba(184,255,46,0.15); stroke: var(--accent-lime); }
+    .service-area__marker { cursor: pointer; transition: all var(--duration-fast) var(--ease-smooth); }
+    .service-area__marker-circle { fill: var(--accent-lime); animation: pulseGlow 2s ease-in-out infinite; }
+    .service-area__marker-pin { fill: var(--bg-deep); }
+    .service-area__label { font-family: var(--font-display); font-size: 0.875rem; font-weight: 700; fill: var(--fg-primary); pointer-events: none; }
+    .service-area__legend { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-md); margin-top: var(--space-xl); }
+    .legend__item { display: flex; align-items: center; gap: var(--space-xs); padding: var(--space-xs) var(--space-md); background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 100px; font-size: 0.8125rem; color: var(--fg-secondary); cursor: pointer; transition: all var(--duration-fast) var(--ease-smooth); }
+    .legend__item:hover, .legend__item.active { border-color: var(--accent-lime); color: var(--accent-lime); background: rgba(184,255,46,0.05); }
+    .legend__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-lime); box-shadow: 0 0 12px var(--accent-lime); }
+
+    /* ========================================
+       FINAL CTA
+       ======================================== */
+    .cta-final { position: relative; overflow: hidden; text-align: center; }
+    .cta-final__bg { position: absolute; inset: 0; background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-deep) 100%); z-index: 0; }
+    .cta-final__grid { position: absolute; inset: 0; opacity: 0.02; background-image: linear-gradient(rgba(184,255,46,1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,255,46,1) 1px, transparent 1px); background-size: 80px 80px; z-index: 1; animation: coordinateTick 4s ease-in-out infinite; }
+    .cta-final__content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+    .cta-final__headline { margin-bottom: var(--space-md); }
+    .cta-final__text { color: var(--fg-secondary); font-size: 1.125rem; margin-bottom: var(--space-2xl); max-width: 50ch; margin-left: auto; margin-right: auto; }
+    .cta-final__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-md); }
+    .cta-final__coords { position: absolute; bottom: var(--space-xl); left: 50%; transform: translateX(-50%); font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.1em; color: rgba(184,255,46,0.4); animation: coordinateTick 3s ease-in-out infinite; }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer { background: var(--bg-deep); border-top: 1px solid var(--border-subtle); padding: var(--space-2xl) 0 var(--space-xl); }
+    .footer__grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: var(--space-2xl); margin-bottom: var(--space-2xl); }
+    .footer__brand { max-width: 300px; }
+    .footer__brand-name { display: flex; flex-direction: column; line-height: 1; margin-bottom: var(--space-lg); }
+    .footer__brand-top { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--fg-primary); }
+    .footer__brand-bottom { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-lime); margin-top: -4px; }
+    .footer__address { color: var(--fg-muted); font-size: 0.9375rem; line-height: 1.7; margin-bottom: var(--space-md); }
+    .footer__phone { display: inline-flex; align-items: center; gap: var(--space-xs); color: var(--accent-lime); font-weight: 600; text-decoration: none; margin-bottom: var(--space-lg); transition: color var(--duration-fast) var(--ease-smooth); }
+    .footer__phone:hover { color: var(--accent-lime-dim); }
+    .footer__social { display: flex; gap: var(--space-sm); }
+    .footer__social-link { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 50%; color: var(--fg-secondary); transition: all var(--duration-fast) var(--ease-smooth); }
+    .footer__social-link:hover { border-color: var(--accent-lime); color: var(--accent-lime); background: rgba(184,255,46,0.05); }
+    
+    .footer__column-title { font-family: var(--font-display); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: var(--space-lg); }
+    .footer__links { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); }
+    .footer__link { color: var(--fg-secondary); text-decoration: none; font-size: 0.9375rem; transition: color var(--duration-fast) var(--ease-smooth); }
+    .footer__link:hover { color: var(--accent-lime); }
+    
+    .footer__bottom { padding-top: var(--space-xl); border-top: 1px solid var(--border-subtle); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-md); }
+    .footer__copyright { color: var(--fg-muted); font-size: 0.875rem; }
+    .footer__badges { display: flex; align-items: center; gap: var(--space-lg); }
+    .footer__badge { display: flex; align-items: center; gap: var(--space-xs); font-size: 0.8125rem; color: var(--fg-muted); }
+    .footer__badge strong { color: var(--accent-lime); }
+    .footer__youtube { color: var(--fg-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color var(--duration-fast) var(--ease-smooth); display: flex; align-items: center; gap: var(--space-xs); }
+    .footer__youtube:hover { color: var(--accent-lime); }
+
+    @media (max-width: 900px) {
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+      .footer__brand { grid-column: span 2; max-width: none; }
+    }
+    @media (max-width: 600px) {
+      .footer__grid { grid-template-columns: 1fr; }
+      .footer__brand { grid-column: span 1; }
+      .footer__bottom { flex-direction: column; text-align: center; }
+    }
+
+    /* ========================================
+       MOBILE CALL BAR
+       ======================================== */
+    .mobile-call-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; padding: var(--space-md); background: var(--bg-deep); border-top: 1px solid var(--border-subtle); backdrop-filter: blur(20px); box-shadow: 0 -4px 32px rgba(0,0,0,0.4); }
+    .mobile-call-bar__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); max-width: var(--container-max); margin: 0 auto; }
+    .mobile-call-bar__text { display: flex; flex-direction: column; }
+    .mobile-call-bar__label { font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); }
+    .mobile-call-bar__number { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: var(--fg-primary); }
+    .mobile-call-bar__btn { flex-shrink: 0; }
+    
+    @media (max-width: 768px) { .mobile-call-bar { display: block; } body { padding-bottom: 90px; } }
+
+    /* ========================================
+       SCROLL REVEAL
+       ======================================== */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity var(--duration-slow) var(--ease-smooth), transform var(--duration-slow) var(--ease-smooth); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal--left { transform: translateX(-40px); }
+    .reveal--left.visible { transform: translateX(0); }
+    .reveal--right { transform: translateX(40px); }
+    .reveal--right.visible { transform: translateX(0); }
+
+    /* ========================================
+       FOCUS STATES
+       ======================================== */
+    :focus-visible { outline: 2px solid var(--accent-lime); outline-offset: 2px; }
+    .btn:focus-visible, .nav__link:focus-visible, .footer__link:focus-visible, .reviews__nav-btn:focus-visible, .legend__item:focus-visible { outline: 2px solid var(--accent-lime); outline-offset: 3px; }
+  
+/* ========================================
+   FLOATING CONTACT WIDGET (FAB)
+   ======================================== */
+:root {
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --whatsapp-green: #25D366;
+  --call-green: #34B73A;
+}
+
+.fab-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  font-family: var(--font-body);
+  --fab-size: 64px;
+}
+
+.fab__main {
+  width: var(--fab-size);
+  height: var(--fab-size);
+  border-radius: 50%;
+  background: var(--accent-lime);
+  color: var(--bg-deep);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(184,255,46,.35);
+  transition: transform var(--duration-normal) var(--ease-spring),
+              box-shadow var(--duration-normal) var(--ease-smooth),
+              background var(--duration-fast) var(--ease-smooth);
+  animation: fabPulse 3s ease-in-out infinite;
+}
+
+@keyframes fabPulse {
+  0%,100% { box-shadow: 0 8px 32px rgba(184,255,46,.30); }
+  50% { box-shadow: 0 8px 42px rgba(184,255,46,.50); }
+}
+
+.fab__main:hover {
+  transform: scale(1.08);
+  background: var(--accent-lime-dim);
+}
+
+.fab__main:active { transform: scale(.96); }
+.fab__main:focus-visible { outline: 3px solid var(--accent-lime); outline-offset: 4px; }
+
+.fab__main[aria-expanded="true"] {
+  transform: rotate(45deg);
+  animation: none;
+  box-shadow: 0 12px 40px rgba(184,255,46,.45);
+}
+
+.fab__icon {
+  display: flex;
+  transition: opacity var(--duration-fast) var(--ease-smooth),
+              transform var(--duration-fast) var(--ease-smooth);
+}
+
+.fab__icon--close {
+  position: absolute;
+  opacity: 0;
+  transform: rotate(-45deg) scale(.5);
+}
+
+.fab__main[aria-expanded="true"] .fab__icon--main {
+  opacity: 0;
+  transform: rotate(45deg) scale(.5);
+}
+
+.fab__main[aria-expanded="true"] .fab__icon--close {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+.fab__pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-lime);
+  opacity: 0;
+  pointer-events: none;
+  animation: fabPulseRing 2s ease-out infinite;
+}
+
+@keyframes fabPulseRing {
+  0% { transform: scale(1); opacity:.6; }
+  100% { transform: scale(1.5); opacity:0; }
+}
+
+.fab__main[aria-expanded="true"] .fab__pulse { animation: none; }
+
+.fab__options {
+  position: absolute;
+  bottom: calc(var(--fab-size) + 16px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--duration-normal) var(--ease-smooth),
+              transform var(--duration-normal) var(--ease-spring);
+}
+
+.fab__main[aria-expanded="true"] + .fab__options {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fab__option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px 12px 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  color: var(--fg-primary);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  transform: translateY(20px) scale(.8);
+  opacity: 0;
+  transition: transform var(--duration-normal) var(--ease-spring),
+              opacity var(--duration-fast) var(--ease-smooth),
+              border-color var(--duration-fast) var(--ease-smooth),
+              background var(--duration-fast) var(--ease-smooth);
+}
+
+.fab__main[aria-expanded="true"] + .fab__options .fab__option {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.fab__main[aria-expanded="true"] + .fab__options .fab__option:nth-child(1) { transition-delay: 50ms; }
+.fab__main[aria-expanded="true"] + .fab__options .fab__option:nth-child(2) { transition-delay: 100ms; }
+.fab__main[aria-expanded="true"] + .fab__options .fab__option:nth-child(3) { transition-delay: 150ms; }
+
+.fab__option:hover {
+  border-color: var(--accent-lime);
+  background: rgba(184,255,46,.08);
+  transform: translateY(0) scale(1.02);
+}
+
+.fab__option:focus-visible {
+  outline: 2px solid var(--accent-lime);
+  outline-offset: 3px;
+}
+
+.fab__option-icon {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.fab__option--whatsapp .fab__option-icon {
+  background: rgba(37,211,102,.15);
+  color: var(--whatsapp-green);
+}
+
+.fab__option--call .fab__option-icon {
+  background: rgba(52,183,58,.15);
+  color: var(--call-green);
+}
+
+.fab__option--email .fab__option-icon {
+  background: rgba(0,212,230,.15);
+  color: var(--accent-cyan);
+}
+
+.fab__option-content {
+  display:flex;
+  flex-direction:column;
+  line-height:1.2;
+}
+
+.fab__option-title {
+  font-family:var(--font-display);
+  font-size:.875rem;
+  font-weight:700;
+  color:var(--fg-primary);
+}
+
+.fab__option-desc {
+  font-size:.75rem;
+  color:var(--fg-muted);
+  letter-spacing:.02em;
+}
+
+.fab__backdrop {
+  position:fixed;
+  inset:0;
+  background:rgba(10,12,14,.3);
+  backdrop-filter:blur(2px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity var(--duration-normal) var(--ease-smooth);
+  z-index:-1;
+}
+
+.fab__main[aria-expanded="true"] ~ .fab__backdrop {
+  opacity:1;
+  pointer-events:auto;
+  z-index:9998;
+}
+
+@media (max-width:768px) {
+  .fab-widget {
+    bottom:100px;
+    right:16px;
+    --fab-size:56px;
+  }
+  .fab__option {
+    max-width:calc(100vw - 32px);
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .fab__main,
+  .fab__option,
+  .fab__options,
+  .fab__backdrop,
+  .fab__pulse {
+    animation:none !important;
+    transition-duration:0ms !important;
+  }
+  .fab__main[aria-expanded="true"] + .fab__options .fab__option {
+    transform:none;
+    opacity:1;
+  }
+}
+
+</style>
+</head>
+<body>
+  <!-- ========================================
+       NAVIGATION
+       ======================================== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="#" class="nav__brand" aria-label="EYE J Digital Land Survey - Home">
+        <span class="nav__brand-top">EYE J DIGITAL</span>
+        <span class="nav__brand-bottom">LAND SURVEY</span>
+      </a>
+      
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#services" class="nav__link">Services</a></li>
+        <li><a href="#field-log" class="nav__link">Field Log</a></li>
+        <li><a href="#reviews" class="nav__link">Reviews</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+      </ul>
+      
+      <div class="nav__cta nav__cta--desktop">
+        <a href="tel:+919567919466" class="btn btn-call">CALL NOW</a>
+      </div>
+      <div class="nav__cta nav__cta--mobile">
+        <a href="tel:+919567919466" class="btn btn-call">CALL NOW</a>
+      </div>
+      
+      <button class="nav__mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" id="navToggle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========================================
+       HERO SECTION
+       ======================================== -->
+  <header class="hero" role="banner">
+    <div class="hero__bg">
+      <!-- Hero background image - using a professional surveying photo -->
+      <img src="https://images.unsplash.com/photo-1581091012184-5f633c9f6482?w=1920&q=80" alt="" class="hero__image" aria-hidden="true">
+      <div class="hero__overlay"></div>
+      <div class="grid-pattern"></div>
+      <div class="contour-lines"></div>
+      <div class="scan-line"></div>
+    </div>
+    
+    <!-- Technical overlay graphics -->
+    <div class="hero__tech-overlay" aria-hidden="true">
+      <div class="hero__tech-layer">
+        <!-- Survey markers with elevations -->
+        <div class="survey-marker" style="top: 35%; left: 25%;" data-elevation="+42.350m"></div>
+        <div class="survey-marker" style="top: 55%; left: 65%;" data-elevation="+38.120m"></div>
+        <div class="survey-marker" style="top: 70%; left: 35%;" data-elevation="+45.800m"></div>
+        <div class="survey-marker" style="top: 25%; left: 75%;" data-elevation="+35.900m"></div>
+        
+        <!-- CAD lines -->
+        <div class="cad-line" style="top: 35%; left: 25%; width: 300px; transform: rotate(25deg);"></div>
+        <div class="cad-line" style="top: 55%; left: 65%; width: 200px; transform: rotate(-40deg);"></div>
+        <div class="cad-line cad-line--dashed" style="top: 45%; left: 40%; width: 250px; transform: rotate(10deg);"></div>
+        
+        <!-- Benchmark labels -->
+        <div class="benchmark-label" style="top: 30%; left: 22%;">BM 101</div>
+        <div class="benchmark-label" style="top: 50%; left: 68%;">BM 102</div>
+        <div class="benchmark-label" style="top: 65%; left: 32%;">BM 103</div>
+        
+        <!-- Elevation points -->
+        <div class="elevation-point" style="top: 40%; left: 45%;">42.350</div>
+        <div class="elevation-point" style="top: 60%; left: 55%;">38.120</div>
+        <div class="elevation-point" style="top: 30%; left: 60%;">35.900</div>
+      </div>
+    </div>
+
+    <div class="container hero__content">
+      <div class="hero__coordinates">
+        <span class="hero__coord-value">11.6041° N</span>
+        <span>·</span>
+        <span class="hero__coord-value">75.4319° E</span>
+        <span class="hero__coord-label">KAKKATTIL, KERALA</span>
+      </div>
+      
+      <h1 class="hero__headline display-xl font-extrabold animate-fade-up">
+        GROUND TRUTH,<br>
+        <span class="text-accent">MAPPED TO THE</span><br>
+        <span class="text-accent">MILLIMETRE.</span>
+      </h1>
+      
+      <p class="hero__subheadline text-lg animate-fade-up delay-1">
+        Total Station, Theodolite, DGPS and GNSS surveys delivered as clean AutoCAD, ArcGIS and Civil 3D drawings — for landowners, builders and engineers across South India.
+      </p>
+      
+      <div class="hero__cta-group animate-fade-up delay-2">
+        <a href="#contact" class="btn btn-primary">CALL FOR A SITE VISIT</a>
+        <a href="#services" class="btn btn-secondary">EXPLORE OUR SERVICES</a>
+        <a href="tel:+919567919466" class="hero__phone" aria-label="Call +91 95679 19466">
+          <svg class="hero__phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span>+91 95679 19466</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================
+       STATISTICS STRIP
+       ======================================== -->
+  <section class="stats" aria-labelledby="stats-heading">
+    <div class="container">
+      <h2 id="stats-heading" class="visually-hidden">Key Statistics</h2>
+      <div class="stats__grid">
+        <div class="stat-item reveal">
+          <div class="stat__value" data-count="15">0</div>
+          <div class="stat__label">YEARS IN<br><strong>FIELD SURVEY</strong></div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat__value" data-count="3200">0</div>
+          <div class="stat__label">PILE POINTS · ONE<br><strong>COLLEGE SITE, CHENNAI</strong></div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat__value" data-count="4.9">0</div>
+          <div class="stat__label">GOOGLE RATING ·<br><strong>34 REVIEWS</strong></div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat__value" data-count="4">0</div>
+          <div class="stat__label">STATES SERVED ·<br><strong>KERALA TO BENGALURU</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       ABOUT SECTION
+       ======================================== -->
+  <section id="about" class="section about reveal" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__visual reveal--left">
+          <div class="about__image-wrapper">
+            <img src="https://images.unsplash.com/photo-1581091012184-5f633c9f6482?w=800&q=80" alt="Professional surveyor operating Total Station on construction site" class="about__image" loading="lazy">
+            <div class="about__image-overlay"></div>
+            <div class="about__badge">
+              <div>
+                <div class="badge__number">3,200</div>
+                <div class="badge__text">PILE POINTS LAID OUT</div>
+              </div>
+              <div class="badge__text">ONE ENGINEERING COLLEGE SITE · CHENNAI</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="about__content reveal--right">
+          <div class="section__header">
+            <span class="section__eyebrow">About Us</span>
+            <h2 id="about-heading" class="section__title display-lg">15 YEARS OF SURVEY WORK YOU CAN BUILD ON.</h2>
+          </div>
+          
+          <div class="about__text">
+            <p class="text-lg">EYE J Digital Land Survey is a land and civil engineering survey team serving Kerala, Coimbatore, Ooty and Bangalore. We run every job on Total Station, Theodolite, GPS and GNSS instruments, and hand back drawings your architect or engineer can open straight away.</p>
+            <p class="text-lg">Our flagship project — <strong>3,200 pile points</strong> set out on a single engineering college site in Chennai — demonstrates our capability to handle both small residential plots and large-scale infrastructure projects with the same precision.</p>
+          </div>
+          
+          <div class="about__highlights">
+            <div class="highlight reveal">
+              <div class="highlight__value">Kerala</div>
+              <div class="highlight__label">Headquarters: Kakkattil</div>
+            </div>
+            <div class="highlight reveal">
+              <div class="highlight__value">Coimbatore</div>
+              <div class="highlight__label">Tamil Nadu Coverage</div>
+            </div>
+            <div class="highlight reveal">
+              <div class="highlight__value">Ooty</div>
+              <div class="highlight__label">Hill Station Surveys</div>
+            </div>
+            <div class="highlight reveal">
+              <div class="highlight__value">Bangalore</div>
+              <div class="highlight__label">Karnataka Projects</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       TECHNOLOGY SECTION
+       ======================================== -->
+  <section id="technology" class="section section--alt reveal" aria-labelledby="tech-heading">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Technology</span>
+        <h2 id="tech-heading" class="section__title display-lg">THE INSTRUMENTS BEHIND THE ACCURACY.</h2>
+      </div>
+      
+      <div class="tech__grid">
+        <!-- Total Station -->
+        <article class="tech-card reveal">
+          <svg class="tech-card__icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <rect x="18" y="12" width="28" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M32 42V52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="32" cy="27" r="8" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="32" y1="19" x2="32" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="24" y1="27" x2="40" y2="27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="26" y="36" width="12" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h3 class="tech-card__title">TOTAL STATION</h3>
+          <p class="tech-card__desc">Precision angle and distance measurement with electronic data capture for boundary, topographic and construction layout surveys.</p>
+        </article>
+        
+        <!-- GNSS/DGPS -->
+        <article class="tech-card reveal">
+          <svg class="tech-card__icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="32" cy="32" r="14" stroke="currentColor" stroke-width="1"/>
+            <circle cx="32" cy="32" r="6" fill="currentColor"/>
+            <path d="M32 8V14M32 50V56M8 32H14M50 32H56" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M18 18L24 24M40 40L46 46M18 46L24 40M40 24L46 18" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <rect x="26" y="42" width="12" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h3 class="tech-card__title">GNSS / DGPS</h3>
+          <p class="tech-card__desc">High-accuracy satellite positioning with differential corrections for rapid site setting out and control network establishment.</p>
+        </article>
+        
+        <!-- Theodolite -->
+        <article class="tech-card reveal">
+          <svg class="tech-card__icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <rect x="22" y="16" width="20" height="28" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="32" cy="30" r="10" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="32" y1="20" x2="32" y2="40" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <line x1="22" y1="30" x2="42" y2="30" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M27 30L32 25L37 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <rect x="27" y="44" width="10" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h3 class="tech-card__title">THEODOLITE</h3>
+          <p class="tech-card__desc">Reliable horizontal and vertical angle measurement for traverse networks, alignment checks and structural monitoring.</p>
+        </article>
+        
+        <!-- AutoCAD -->
+        <article class="tech-card reveal">
+          <svg class="tech-card__icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <rect x="8" y="10" width="48" height="44" rx="3" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M16 22L28 34L48 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M16 38L28 26L48 38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="20" y1="30" x2="44" y2="30" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+            <line x1="20" y1="34" x2="44" y2="34" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+          </svg>
+          <h3 class="tech-card__title">AUTOCAD</h3>
+          <p class="tech-card__desc">Professional DWG drafting — plans, sections, layouts and detail drawings delivered in your layer standards and templates.</p>
+        </article>
+        
+        <!-- ArcGIS -->
+        <article class="tech-card reveal">
+          <svg class="tech-card__icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M32 6L32 20M32 44L32 58M6 32L20 32M44 32L58 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M20 20L28 28M36 36L44 44M20 44L28 36M36 28L44 20" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="32" cy="32" r="8" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+            <circle cx="32" cy="32" r="3" fill="currentColor"/>
+          </svg>
+          <h3 class="tech-card__title">ARCGIS</h3>
+          <p class="tech-card__desc">Digital mapping and spatial analysis — geodatabases, feature classes and web maps ready for your GIS workflow.</p>
+        </article>
+        
+        <!-- Civil 3D -->
+        <article class="tech-card reveal">
+          <svg class="tech-card__icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M10 48L24 30L32 38L40 26L54 48" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M14 52L28 34L36 42L44 30L58 52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M18 56L32 38L46 56" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="4 3"/>
+            <circle cx="32" cy="38" r="4" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="32" cy="38" r="1.5" fill="currentColor"/>
+          </svg>
+          <h3 class="tech-card__title">CIVIL 3D</h3>
+          <p class="tech-card__desc">Engineering-ready terrain models, corridors, pipe networks and grading — surfaces that calculate volumes and design intent.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       SERVICES SECTION
+       ======================================== -->
+  <section id="services" class="section reveal" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Services</span>
+        <h2 id="services-heading" class="section__title display-lg">WHAT WE SURVEY</h2>
+        <p class="section__description">Every job is handed back as a drawing your engineer or authority can act on directly.</p>
+      </div>
+      
+      <div class="services__grid">
+        <article class="service-card reveal">
+          <div class="service-card__number">01</div>
+          <h3 class="service-card__title">PLOT & BOUNDARY DEMARCATION</h3>
+          <p class="service-card__desc">Precise identification and marking of property lines, so ownership and extent are clear before you build, sell, or settle a dispute.</p>
+        </article>
+        
+        <article class="service-card reveal">
+          <div class="service-card__number">02</div>
+          <h3 class="service-card__title">TOPOGRAPHIC & CONTOUR SURVEY</h3>
+          <p class="service-card__desc">Elevation and terrain mapping used for drainage, earthwork and site planning, delivered as contour-ready CAD and GIS files.</p>
+        </article>
+        
+        <article class="service-card reveal">
+          <div class="service-card__number">03</div>
+          <h3 class="service-card__title">ROAD & ALIGNMENT SURVEY</h3>
+          <p class="service-card__desc">Centre-line, widening and alignment surveys for road and infrastructure work, referenced to fixed benchmarks.</p>
+        </article>
+        
+        <article class="service-card reveal">
+          <div class="service-card__number">04</div>
+          <h3 class="service-card__title">PILING & LAYOUT SETTING OUT</h3>
+          <p class="service-card__desc">Pile point marking and construction layout using DGPS, set out to the drawing before the first stake goes into the ground.</p>
+        </article>
+        
+        <article class="service-card reveal">
+          <div class="service-card__number">05</div>
+          <h3 class="service-card__title">CONSTRUCTION & BUILDING SURVEY</h3>
+          <p class="service-card__desc">Levelling and layout support through a build, plus surveys required for permits and completion certificates.</p>
+        </article>
+        
+        <article class="service-card reveal">
+          <div class="service-card__number">06</div>
+          <h3 class="service-card__title">CAD & GIS DRAFTING OUTPUT</h3>
+          <p class="service-card__desc">Field data processed into clean AutoCAD, ArcGIS and Civil 3D drawings — ready for your architect, engineer or local authority.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FIELD LOG / CASE STUDIES
+       ======================================== -->
+  <section id="field-log" class="section section--alt reveal" aria-labelledby="fieldlog-heading">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Field Log</span>
+        <h2 id="fieldlog-heading" class="section__title display-lg">FROM THE FIELD LOG</h2>
+        <p class="section__description">Recent jobs, straight from site.</p>
+      </div>
+      
+      <div class="field-log__timeline">
+        <article class="field-log__item reveal">
+          <time class="field-log__date" datetime="2026-04-08">08 APR 2026</time>
+          <div class="field-log__content">
+            <h3 class="field-log__title">DGPS Setting Out</h3>
+            <p class="field-log__desc">AutoCAD drawings set out on site using Differential GPS for high-accuracy land development and infrastructure projects.</p>
+            <div class="field-log__tags">
+              <span class="field-log__tag">DGPS</span>
+              <span class="field-log__tag">Setting Out</span>
+              <span class="field-log__tag">Infrastructure</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="field-log__item reveal">
+          <time class="field-log__date" datetime="2026-04-08">08 APR 2026</time>
+          <div class="field-log__content">
+            <h3 class="field-log__title">Pile Point Marking</h3>
+            <p class="field-log__desc">Full piling layout marked and verified against the structural drawing ahead of foundation work.</p>
+            <div class="field-log__tags">
+              <span class="field-log__tag">Piling</span>
+              <span class="field-log__tag">Layout</span>
+              <span class="field-log__tag">Verification</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="field-log__item reveal">
+          <time class="field-log__date" datetime="2026-01-02">02 JAN 2026</time>
+          <div class="field-log__content">
+            <h3 class="field-log__title">Landscape Survey</h3>
+            <p class="field-log__desc">Terrain and feature survey carried out ahead of site landscaping design.</p>
+            <div class="field-log__tags">
+              <span class="field-log__tag">Topographic</span>
+              <span class="field-log__tag">Landscaping</span>
+              <span class="field-log__tag">Site Planning</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="field-log__item reveal">
+          <time class="field-log__date" datetime="2025-12-28">28 DEC 2025</time>
+          <div class="field-log__content">
+            <h3 class="field-log__title">Surveyor for Land & Buildings</h3>
+            <p class="field-log__desc">Combined plot and structure survey delivered for a residential property.</p>
+            <div class="field-log__tags">
+              <span class="field-log__tag">Boundary</span>
+              <span class="field-log__tag">Building Survey</span>
+              <span class="field-log__tag">Residential</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       VISUAL GALLERY
+       ======================================== -->
+  <section class="section gallery reveal" aria-labelledby="gallery-heading">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Gallery</span>
+        <h2 id="gallery-heading" class="section__title display-lg">ON SITE</h2>
+      </div>
+      
+      <div class="gallery__grid">
+        <figure class="gallery__item gallery__item--wide reveal">
+          <img src="https://images.unsplash.com/photo-1581091012184-5f633c9f6482?w=800&q=80" alt="Surveyor using Total Station on construction site" class="gallery__image" loading="lazy">
+          <figcaption class="gallery__caption"><strong>TOTAL STATION</strong> OPERATION</figcaption>
+        </figure>
+        
+        <figure class="gallery__item reveal">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="GNSS rover setup on tripod" class="gallery__image" loading="lazy">
+          <figcaption class="gallery__caption"><strong>GNSS ROVER</strong> SETUP</figcaption>
+        </figure>
+        
+        <figure class="gallery__item reveal">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356bae?w=600&q=80" alt="Survey tripod being levelled" class="gallery__image" loading="lazy">
+          <figcaption class="gallery__caption"><strong>INSTRUMENT</strong> LEVELLED</figcaption>
+        </figure>
+        
+        <figure class="gallery__item gallery__item--tall reveal">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80" alt="Construction site survey check" class="gallery__image" loading="lazy">
+          <figcaption class="gallery__caption"><strong>CONSTRUCTION</strong> SITE CHECK</figcaption>
+        </figure>
+        
+        <figure class="gallery__item reveal">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="GNSS data capture in field" class="gallery__image" loading="lazy">
+          <figcaption class="gallery__caption"><strong>GNSS DATA</strong> CAPTURE</figcaption>
+        </figure>
+        
+        <figure class="gallery__item reveal">
+          <img src="https://images.unsplash.com/photo-1581091012184-5f633c9f6482?w=600&q=80" alt="Survey marker on site" class="gallery__image" loading="lazy">
+          <figcaption class="gallery__caption"><strong>SURVEY</strong> MARKERS</figcaption>
+        </figure>
+        
+        <figure class="gallery__item reveal">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="CAD drawing on tablet in field" class="gallery__image" loading="lazy">
+          <figcaption class="gallery__caption"><strong>CAD DRAWING</strong> REVIEW</figcaption>
+        </figure>
+        
+        <figure class="gallery__item reveal">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356bae?w=600&q=80" alt="Survey team at work" class="gallery__image" loading="lazy">
+          <figcaption class="gallery__caption"><strong>FIELD TEAM</strong> COORDINATION</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       CAD OUTPUT SECTION
+       ======================================== -->
+  <section class="section cad-output reveal" aria-labelledby="cad-heading">
+    <div class="cad-output__bg"></div>
+    <div class="cad-output__grid"></div>
+    <div class="container cad-output__content">
+      <div class="section__header">
+        <span class="section__eyebrow">Digital Output</span>
+        <h2 id="cad-heading" class="section__title display-lg">FROM FIELD DATA TO ENGINEERING-READY DRAWINGS.</h2>
+      </div>
+      
+      <div class="cad-output__pipeline" role="list" aria-label="Survey to CAD pipeline">
+        <div class="pipeline__stage active" role="listitem" data-stage="1">
+          <svg class="pipeline__icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M16 48L32 16L48 48" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="32" cy="34" r="6" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="32" cy="34" r="2" fill="currentColor"/>
+          </svg>
+          <span class="pipeline__label">REAL LAND</span>
+        </div>
+        
+        <svg class="pipeline__arrow" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M8 16L24 16M24 16L18 10M24 16L18 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        
+        <div class="pipeline__stage" role="listitem" data-stage="2">
+          <svg class="pipeline__icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <circle cx="32" cy="32" r="4" fill="currentColor"/>
+            <circle cx="20" cy="20" r="3" fill="currentColor" opacity="0.6"/>
+            <circle cx="44" cy="20" r="3" fill="currentColor" opacity="0.6"/>
+            <circle cx="20" cy="44" r="3" fill="currentColor" opacity="0.6"/>
+            <circle cx="44" cy="44" r="3" fill="currentColor" opacity="0.6"/>
+            <circle cx="32" cy="12" r="3" fill="currentColor" opacity="0.6"/>
+            <circle cx="32" cy="52" r="3" fill="currentColor" opacity="0.6"/>
+            <circle cx="12" cy="32" r="3" fill="currentColor" opacity="0.6"/>
+            <circle cx="52" cy="32" r="3" fill="currentColor" opacity="0.6"/>
+          </svg>
+          <span class="pipeline__label">SURVEY DATA</span>
+        </div>
+        
+        <svg class="pipeline__arrow" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M8 16L24 16M24 16L18 10M24 16L18 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        
+        <div class="pipeline__stage" role="listitem" data-stage="3">
+          <svg class="pipeline__icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M12 48Q22 30 32 40Q42 30 52 48" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M12 40Q22 22 32 32Q42 22 52 40" stroke="currentColor" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+            <path d="M12 32Q22 14 32 24Q42 14 52 32" stroke="currentColor" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+            <circle cx="32" cy="36" r="3" fill="currentColor"/>
+          </svg>
+          <span class="pipeline__label">DIGITAL MAP</span>
+        </div>
+        
+        <svg class="pipeline__arrow" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M8 16L24 16M24 16L18 10M24 16L18 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        
+        <div class="pipeline__stage" role="listitem" data-stage="4">
+          <svg class="pipeline__icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <rect x="10" y="14" width="44" height="36" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="18" y1="26" x2="46" y2="26" stroke="currentColor" stroke-width="1"/>
+            <line x1="18" y1="34" x2="46" y2="34" stroke="currentColor" stroke-width="1"/>
+            <line x1="26" y1="18" x2="26" y2="46" stroke="currentColor" stroke-width="1"/>
+            <line x1="38" y1="18" x2="38" y2="46" stroke="currentColor" stroke-width="1"/>
+            <path d="M20 20L30 30M30 20L20 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="pipeline__label">CAD DRAWING</span>
+          <span class="pipeline__label pipeline__label--format">.DWG · ArcGIS · Civil 3D</span>
+        </div>
+      </div>
+      
+      <div class="cad-output__message reveal">
+        <p class="cad-output__message-text">No unnecessary re-drafting. <strong>Your architect, engineer or authority gets usable digital output.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       WHY US SECTION
+       ======================================== -->
+  <section class="section section--alt reveal" aria-labelledby="why-heading">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Why Choose Us</span>
+        <h2 id="why-heading" class="section__title display-lg">WHY CLIENTS KEEP CALLING US BACK</h2>
+      </div>
+      
+      <div class="why__grid">
+        <article class="why-card reveal">
+          <svg class="why-card__icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="10" y="4" width="20" height="22" rx="2" stroke="currentColor" stroke-width="2"/>
+            <circle cx="20" cy="15" r="5" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="20" y1="26" x2="20" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="14" y1="32" x2="26" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="20" y1="10" x2="20" y2="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3 class="why-card__title">MODERN INSTRUMENTS</h3>
+          <p class="why-card__desc">Total Station, Theodolite and GNSS/DGPS equipment — not tape-and-eye estimates.</p>
+        </article>
+        
+        <article class="why-card reveal">
+          <svg class="why-card__icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="6" y="8" width="28" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 20L20 28L28 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="12" y1="24" x2="28" y2="24" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="12" y1="28" x2="28" y2="28" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="18" y="4" width="4" height="4" rx="1" fill="currentColor"/>
+          </svg>
+          <h3 class="why-card__title">DRAWINGS YOU CAN USE</h3>
+          <p class="why-card__desc">Output in AutoCAD, ArcGIS and Civil 3D — no conversion needed.</p>
+        </article>
+        
+        <article class="why-card reveal">
+          <svg class="why-card__icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <circle cx="20" cy="20" r="16" stroke="currentColor" stroke-width="2"/>
+            <path d="M20 10V20L28 26" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="20" r="4" fill="currentColor"/>
+            <text x="20" y="36" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace">ON TIME</text>
+          </svg>
+          <h3 class="why-card__title">ON-TIME DELIVERY</h3>
+          <p class="why-card__desc">Clients across 34 reviews consistently note punctual, timely project completion.</p>
+        </article>
+        
+        <article class="why-card reveal">
+          <svg class="why-card__icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path d="M8 32L20 12L32 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M12 26L20 16L28 26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="20" cy="18" r="3" fill="currentColor"/>
+            <text x="20" y="36" text-anchor="middle" font-size="7" fill="currentColor" font-family="monospace">3,200 POINTS</text>
+          </svg>
+          <h3 class="why-card__title">LARGE-SCALE CAPABILITY</h3>
+          <p class="why-card__desc">3,200 pile points laid out on a single Chennai college site.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       REVIEWS SECTION
+       ======================================== -->
+  <section id="reviews" class="section reviews reveal" aria-labelledby="reviews-heading">
+    <div class="container">
+      <div class="reviews__header">
+        <div class="reviews__rating">
+          <span class="reviews__score">4.9</span>
+          <span class="reviews__stars">★★★★★</span>
+          <span class="reviews__meta">GOOGLE · 34 REVIEWS</span>
+        </div>
+      </div>
+      
+      <div class="reviews__slider" id="reviewsSlider" role="region" aria-label="Client testimonials">
+        <div class="reviews__track" id="reviewsTrack">
+          <!-- Review 1 -->
+          <article class="review-card">
+            <svg class="review-card__quote" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M12 18C12 12 18 8 24 8S36 12 36 18M12 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M36 18C36 12 42 8 48 8S60 12 60 18M36 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <p class="review-card__text">"Excellent service with precise measurements. The team used Total Station and delivered the AutoCAD drawings within the promised timeline. Highly recommended for boundary surveys."</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar">UM</div>
+              <div>
+                <div class="review-card__name">UVAISE MK</div>
+                <div class="review-card__role">Landowner · Kozhikode</div>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Review 2 -->
+          <article class="review-card">
+            <svg class="review-card__quote" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M12 18C12 12 18 8 24 8S36 12 36 18M12 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M36 18C36 12 42 8 48 8S60 12 60 18M36 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <p class="review-card__text">"Professional approach and accurate results. They handled our DGPS survey for a road alignment project efficiently. The Civil 3D output was ready for our design team immediately."</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar">RI</div>
+              <div>
+                <div class="review-card__name">RISLA ICHU</div>
+                <div class="review-card__role">Civil Engineer · Coimbatore</div>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Review 3 -->
+          <article class="review-card">
+            <svg class="review-card__quote" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M12 18C12 12 18 8 24 8S36 12 36 18M12 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M36 18C36 12 42 8 48 8S60 12 60 18M36 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <p class="review-card__text">"Best surveying team I've worked with in 15 years of construction. Their pile point marking for our 50+ pile project was flawless. Zero rework needed on site."</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar">JM</div>
+              <div>
+                <div class="review-card__name">JAMSHEER MP</div>
+                <div class="review-card__role">Project Manager · Bangalore</div>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Review 4 -->
+          <article class="review-card">
+            <svg class="review-card__quote" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M12 18C12 12 18 8 24 8S36 12 36 18M12 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M36 18C36 12 42 8 48 8S60 12 60 18M36 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <p class="review-card__text">"Needed a topographic survey for a hillside property in Ooty. They managed the terrain challenges professionally and delivered contour-ready CAD files that our architect praised."</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar">SM</div>
+              <div>
+                <div class="review-card__name">SAFU MUHD</div>
+                <div class="review-card__role">Architect · Ooty</div>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Review 5 -->
+          <article class="review-card">
+            <svg class="review-card__quote" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M12 18C12 12 18 8 24 8S36 12 36 18M12 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M36 18C36 12 42 8 48 8S60 12 60 18M36 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <p class="review-card__text">"Responsive, accurate, and transparent pricing. They surveyed our residential plot for building permit submission. The municipality accepted the drawings without any queries."</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar">AT</div>
+              <div>
+                <div class="review-card__name">ASED TK</div>
+                <div class="review-card__role">Homeowner · Kakkattil</div>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Review 6 -->
+          <article class="review-card">
+            <svg class="review-card__quote" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M12 18C12 12 18 8 24 8S36 12 36 18M12 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M36 18C36 12 42 8 48 8S60 12 60 18M36 18V30" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <p class="review-card__text">"Used their services for a boundary dispute resolution. The Theodolite survey was thorough and the report stood up in court. Professional documentation throughout."</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar">SH</div>
+              <div>
+                <div class="review-card__name">SHAM-ULA</div>
+                <div class="review-card__role">Property Consultant · Kerala</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      
+      <div class="reviews__nav">
+        <button class="reviews__nav-btn" id="reviewsPrev" aria-label="Previous testimonial" disabled>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="reviews__dots" id="reviewsDots" role="tablist" aria-label="Testimonial navigation"></div>
+        <button class="reviews__nav-btn" id="reviewsNext" aria-label="Next testimonial">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       SERVICE AREA SECTION
+       ======================================== -->
+  <section id="service-area" class="section section--alt reveal" aria-labelledby="area-heading">
+    <div class="container">
+      <div class="section__header" style="text-align: center;">
+        <span class="section__eyebrow">Coverage</span>
+        <h2 id="area-heading" class="section__title display-lg">WHERE WE WORK</h2>
+        <p class="section__description">Based in Kakkattil, Kerala — travelling for the right job.</p>
+      </div>
+      
+      <div class="service-area__map">
+        <!-- Stylized South India Map SVG -->
+        <svg class="service-area__svg" viewBox="0 0 800 450" aria-label="Service area map showing Kerala, Coimbatore, Ooty and Bangalore">
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          
+          <!-- Kerala Region -->
+          <path class="service-area__region service-area__region--active" id="region-kerala" d="M120,180 Q140,150 180,140 Q220,130 250,150 Q280,170 270,210 Q260,250 220,280 Q180,310 140,300 Q100,290 90,240 Q80,200 100,190 Q110,175 120,180" filter="url(#glow)"/>
+          
+          <!-- Tamil Nadu (Coimbatore, Ooty) -->
+          <path class="service-area__region" id="region-tn" d="M250,150 Q280,130 320,140 Q360,150 370,190 Q380,230 350,260 Q320,290 280,270 Q250,250 240,210 Q230,180 250,150"/>
+          
+          <!-- Karnataka (Bangalore) -->
+          <path class="service-area__region" id="region-ka" d="M320,140 Q360,120 400,130 Q440,140 450,180 Q460,220 430,250 Q400,280 370,260 Q340,240 330,200 Q320,170 320,140"/>
+          
+          <!-- Coastline hint -->
+          <path d="M80,190 Q100,220 90,260 Q80,300 60,320 Q40,340 30,360" fill="none" stroke="var(--border-subtle)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          <path d="M450,180 Q470,210 460,250 Q450,290 430,310" fill="none" stroke="var(--border-subtle)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          
+          <!-- Markers -->
+          <!-- Kakkattil, Kerala -->
+          <g class="service-area__marker" data-region="kerala" role="button" tabindex="0" aria-label="Kakkattil, Kerala - Headquarters">
+            <circle class="service-area__marker-circle" cx="150" cy="240" r="8"/>
+            <circle class="service-area__marker-pin" cx="150" cy="240" r="3"/>
+          </g>
+          <text class="service-area__label" x="170" y="230" text-anchor="start">KAKKATTIL</text>
+          <text class="service-area__label" x="170" y="245" text-anchor="start" style="font-size: 0.625rem; font-weight: 400; font-family: var(--font-body); fill: var(--fg-muted);">HEADQUARTERS</text>
+          
+          <!-- Kozhikode/Calicut -->
+          <g class="service-area__marker" data-region="kerala" role="button" tabindex="0" aria-label="Kozhikode, Kerala">
+            <circle class="service-area__marker-circle" cx="110" cy="200" r="6"/>
+            <circle class="service-area__marker-pin" cx="110" cy="200" r="2.5"/>
+          </g>
+          <text class="service-area__label" x="125" y="190" text-anchor="start" style="font-size: 0.6875rem;">KOZHIKODE</text>
+          
+          <!-- Kochi -->
+          <g class="service-area__marker" data-region="kerala" role="button" tabindex="0" aria-label="Kochi, Kerala">
+            <circle class="service-area__marker-circle" cx="160" cy="300" r="6"/>
+            <circle class="service-area__marker-pin" cx="160" cy="300" r="2.5"/>
+          </g>
+          <text class="service-area__label" x="175" y="310" text-anchor="start" style="font-size: 0.6875rem;">KOCHI</text>
+          
+          <!-- Thiruvananthapuram -->
+          <g class="service-area__marker" data-region="kerala" role="button" tabindex="0" aria-label="Thiruvananthapuram, Kerala">
+            <circle class="service-area__marker-circle" cx="140" cy="360" r="6"/>
+            <circle class="service-area__marker-pin" cx="140" cy="360" r="2.5"/>
+          </g>
+          <text class="service-area__label" x="155" y="370" text-anchor="start" style="font-size: 0.6875rem;">THIRUVANANTHAPURAM</text>
+          
+          <!-- Coimbatore -->
+          <g class="service-area__marker" data-region="tn" role="button" tabindex="0" aria-label="Coimbatore, Tamil Nadu">
+            <circle class="service-area__marker-circle" cx="300" cy="220" r="8"/>
+            <circle class="service-area__marker-pin" cx="300" cy="220" r="3"/>
+          </g>
+          <text class="service-area__label" x="315" y="210" text-anchor="start">COIMBATORE</text>
+          
+          <!-- Ooty -->
+          <g class="service-area__marker" data-region="tn" role="button" tabindex="0" aria-label="Ooty, Tamil Nadu">
+            <circle class="service-area__marker-circle" cx="270" cy="180" r="6"/>
+            <circle class="service-area__marker-pin" cx="270" cy="180" r="2.5"/>
+          </g>
+          <text class="service-area__label" x="285" y="170" text-anchor="start" style="font-size: 0.6875rem;">OOTY</text>
+          
+          <!-- Bangalore -->
+          <g class="service-area__marker" data-region="ka" role="button" tabindex="0" aria-label="Bangalore, Karnataka">
+            <circle class="service-area__marker-circle" cx="400" cy="200" r="10"/>
+            <circle class="service-area__marker-pin" cx="400" cy="200" r="4"/>
+          </g>
+          <text class="service-area__label" x="415" y="190" text-anchor="start" style="font-size: 0.875rem; font-weight: 800;">BANGALORE</text>
+          
+          <!-- Connection lines -->
+          <path d="M150,240 Q220,220 300,220" fill="none" stroke="var(--accent-lime)" stroke-width="1.5" stroke-dasharray="8 6" opacity="0.5" stroke-linecap="round"/>
+          <path d="M150,240 Q200,190 270,180" fill="none" stroke="var(--accent-lime)" stroke-width="1.5" stroke-dasharray="8 6" opacity="0.5" stroke-linecap="round"/>
+          <path d="M300,220 Q350,210 400,200" fill="none" stroke="var(--accent-lime)" stroke-width="1.5" stroke-dasharray="8 6" opacity="0.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      
+      <div class="service-area__legend" role="group" aria-label="Service area legend">
+        <button class="legend__item active" data-region="kerala" aria-pressed="true">
+          <span class="legend__dot"></span> KERALA
+        </button>
+        <button class="legend__item" data-region="tn" aria-pressed="false">
+          <span class="legend__dot"></span> COIMBATORE &amp; OOTY
+        </button>
+        <button class="legend__item" data-region="ka" aria-pressed="false">
+          <span class="legend__dot"></span> BANGALORE
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FINAL CTA
+       ======================================== -->
+  <section id="contact" class="section cta-final reveal" aria-labelledby="cta-heading">
+    <div class="cta-final__bg"></div>
+    <div class="cta-final__grid"></div>
+    <div class="container cta-final__content">
+      <h2 id="cta-heading" class="cta-final__headline display-lg">HAVE A PLOT, SITE OR PROJECT TO SURVEY?</h2>
+      <p class="cta-final__text">Call to discuss your plot, site or timeline — we'll tell you plainly what instrument and turnaround the job needs.</p>
+      <div class="cta-final__actions">
+        <a href="tel:+919567919466" class="btn btn-primary btn-call" style="padding: 1.25rem 2.5rem; font-size: 1rem;">CALL +91 95679 19466</a>
+        <a href="#contact-form" class="btn btn-secondary">REQUEST A SITE VISIT</a>
+      </div>
+      <div class="cta-final__coords" aria-hidden="true">11.6041° N · 75.4319° E — KAKKATTIL, KERALA</div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FOOTER
+       ======================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__brand-name">
+            <span class="footer__brand-top">EYE J DIGITAL</span>
+            <span class="footer__brand-bottom">LAND SURVEY</span>
+          </div>
+          <address class="footer__address">
+            Kakkattil, Kerala 673507, India
+          </address>
+          <a href="tel:+919567919466" class="footer__phone">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            +91 95679 19466
+          </a>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="YouTube" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://maps.google.com/?q=Kakkattil,+Kerala+673507" class="footer__social-link" aria-label="Google Maps" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </a>
+            <a href="mailto:info@eyejdigitalsurvey.com" class="footer__social-link" aria-label="Email">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
+          </div>
+        </div>
+        
+        <nav class="footer__nav" aria-label="Quick links">
+          <h3 class="footer__column-title">Quick Links</h3>
+          <ul class="footer__links">
+            <li><a href="#about" class="footer__link">About</a></li>
+            <li><a href="#services" class="footer__link">Services</a></li>
+            <li><a href="#field-log" class="footer__link">Field Log</a></li>
+            <li><a href="#reviews" class="footer__link">Reviews</a></li>
+            <li><a href="#contact" class="footer__link">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <nav class="footer__nav" aria-label="Services">
+          <h3 class="footer__column-title">Services</h3>
+          <ul class="footer__links">
+            <li><a href="#services" class="footer__link">Plot & Boundary Demarcation</a></li>
+            <li><a href="#services" class="footer__link">Topographic & Contour Survey</a></li>
+            <li><a href="#services" class="footer__link">Road & Alignment Survey</a></li>
+            <li><a href="#services" class="footer__link">Piling & Layout Setting Out</a></li>
+            <li><a href="#services" class="footer__link">Construction & Building Survey</a></li>
+            <li><a href="#services" class="footer__link">CAD & GIS Drafting Output</a></li>
+          </ul>
+        </nav>
+        
+        <div class="footer__nav">
+          <h3 class="footer__column-title">Service Areas</h3>
+          <ul class="footer__links">
+            <li><a href="#service-area" class="footer__link">Kerala (All Districts)</a></li>
+            <li><a href="#service-area" class="footer__link">Coimbatore, Tamil Nadu</a></li>
+            <li><a href="#service-area" class="footer__link">Ooty, Tamil Nadu</a></li>
+            <li><a href="#service-area" class="footer__link">Bangalore, Karnataka</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer__bottom">
+        <p class="footer__copyright">© 2026 EYE J DIGITAL LAND SURVEY</p>
+        <div class="footer__badges">
+          <a href="#" class="footer__youtube" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            Watch our survey work on YouTube →
+          </a>
+          <span class="footer__badge"><strong>4.9 / 5</strong> on Google · 34 reviews</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================
+       MOBILE CALL BAR
+       ======================================== -->
+  <div class="mobile-call-bar" role="contentinfo" aria-label="Quick call">
+    <div class="mobile-call-bar__inner">
+      <div class="mobile-call-bar__text">
+        <span class="mobile-call-bar__label">Call for Site Visit</span>
+        <span class="mobile-call-bar__number">+91 95679 19466</span>
+      </div>
+      <a href="tel:+919567919466" class="btn btn-call mobile-call-bar__btn">CALL NOW</a>
+    </div>
+  </div>
+
+  <!-- ========================================
+       JAVASCRIPT
+       ======================================== -->
+  <script>
+    (function() {
+      'use strict';
+
+      // ========================================
+      // UTILITY FUNCTIONS
+      // ========================================
+      const $ = (sel, ctx = document) => ctx.querySelector(sel);
+      const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+      const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
+      const lerp = (a, b, t) => a + (b - a) * t;
+
+      // ========================================
+      // NAVIGATION
+      // ========================================
+      const nav = $('.nav');
+      const navToggle = $('#navToggle');
+      const navLinks = $('#navLinks');
+      
+      let lastScrollY = 0;
+      let ticking = false;
+
+      function onScroll() {
+        const scrollY = window.scrollY;
+        
+        if (scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+        
+        lastScrollY = scrollY;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Mobile menu toggle
+      navToggle?.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', isOpen);
+        navToggle.innerHTML = isOpen 
+          ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
+          : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+      });
+
+      // Close mobile menu on link click
+      $$('.nav__link').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          navToggle.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+        });
+      });
+
+      // Active nav link on scroll
+      const sections = $$('section[id]');
+      const navLinksArray = $$('.nav__link');
+
+      function updateActiveNav() {
+        const scrollPos = window.scrollY + 150;
+        
+        sections.forEach(section => {
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          const id = section.getAttribute('id');
+          
+          if (scrollPos >= top && scrollPos < top + height) {
+            navLinksArray.forEach(link => {
+              link.classList.toggle('nav__link--active', link.getAttribute('href') === `#${id}`);
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+      // ========================================
+      // STATISTICS COUNTER ANIMATION
+      // ========================================
+      const statValues = $$('.stat__value[data-count]');
+      let statsAnimated = false;
+
+      function animateCounters() {
+        if (statsAnimated) return;
+        
+        const statsSection = $('.stats');
+        const rect = statsSection.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
+        
+        if (isVisible) {
+          statsAnimated = true;
+          
+          statValues.forEach((el, index) => {
+            const target = parseInt(el.dataset.count, 10);
+            const isDecimal = el.dataset.count.includes('.');
+            const duration = 1500;
+            const startTime = performance.now() + index * 100;
+            
+            function updateCounter(currentTime) {
+              const elapsed = currentTime - startTime;
+              const progress = clamp(elapsed / duration, 0, 1);
+              const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+              
+              let current = eased * target;
+              if (isDecimal) {
+                current = current.toFixed(1);
+              } else {
+                current = Math.floor(current);
+              }
+              
+              el.textContent = current.toLocaleString();
+              
+              if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+              }
+            }
+            
+            requestAnimationFrame(updateCounter);
+          });
+        }
+      }
+
+      window.addEventListener('scroll', animateCounters, { passive: true });
+      animateCounters(); // Check initial state
+
+      // ========================================
+      // SCROLL REVEAL (IntersectionObserver)
+      // ========================================
+      const revealElements = $$('.reveal');
+      
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // ========================================
+      // REVIEWS SLIDER
+      // ========================================
+      const reviewsTrack = $('#reviewsTrack');
+      const reviewsPrev = $('#reviewsPrev');
+      const reviewsNext = $('#reviewsNext');
+      const reviewsDots = $('#reviewsDots');
+      
+      let currentSlide = 0;
+      let slidesPerView = 3;
+      let totalSlides = 0;
+      let maxSlide = 0;
+
+      function initReviewsSlider() {
+        const cards = $$('.review-card', reviewsTrack);
+        totalSlides = cards.length;
+        
+        // Determine slides per view based on container width
+        function updateSlidesPerView() {
+          const containerWidth = reviewsTrack.parentElement.offsetWidth;
+          const cardWidth = cards[0]?.offsetWidth || 320;
+          const gap = 24; // var(--space-lg) = 1.5rem = 24px
+          
+          if (containerWidth < 600) {
+            slidesPerView = 1;
+          } else if (containerWidth < 900) {
+            slidesPerView = 2;
+          } else {
+            slidesPerView = 3;
+          }
+          
+          maxSlide = Math.max(0, totalSlides - slidesPerView);
+          currentSlide = clamp(currentSlide, 0, maxSlide);
+          updateSlider();
+          updateDots();
+        }
+        
+        updateSlidesPerView();
+        window.addEventListener('resize', updateSlidesPerView);
+        
+        // Create dots
+        const dotCount = Math.ceil(totalSlides / slidesPerView);
+        reviewsDots.innerHTML = '';
+        for (let i = 0; i < dotCount; i++) {
+          const dot = document.createElement('button');
+          dot.className = 'reviews__dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', `Go to testimonial group ${i + 1}`);
+          dot.addEventListener('click', () => goToSlide(i * slidesPerView));
+          reviewsDots.appendChild(dot);
+        }
+      }
+
+      function updateSlider() {
+        const cards = $$('.review-card', reviewsTrack);
+        if (cards.length === 0) return;
+        
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 24;
+        const offset = currentSlide * (cardWidth + gap);
+        
+        reviewsTrack.style.transform = `translateX(-${offset}px)`;
+        
+        reviewsPrev.disabled = currentSlide === 0;
+        reviewsNext.disabled = currentSlide >= maxSlide;
+      }
+
+      function updateDots() {
+        const dots = $$('.reviews__dot', reviewsDots);
+        const dotIndex = Math.floor(currentSlide / slidesPerView);
+        
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === dotIndex);
+        });
+      }
+
+      function goToSlide(index) {
+        currentSlide = clamp(index, 0, maxSlide);
+        updateSlider();
+        updateDots();
+      }
+
+      reviewsPrev?.addEventListener('click', () => goToSlide(currentSlide - slidesPerView));
+      reviewsNext?.addEventListener('click', () => goToSlide(currentSlide + slidesPerView));
+
+      // Touch/swipe support
+      let touchStartX = 0;
+      let touchStartSlide = 0;
+      
+      reviewsTrack?.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartSlide = currentSlide;
+      }, { passive: true });
+      
+      reviewsTrack?.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            goToSlide(touchStartSlide + slidesPerView);
+          } else {
+            goToSlide(touchStartSlide - slidesPerView);
+          }
+        }
+      }, { passive: true });
+
+      // Keyboard navigation
+      reviewsTrack?.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') goToSlide(currentSlide - slidesPerView);
+        if (e.key === 'ArrowRight') goToSlide(currentSlide + slidesPerView);
+      });
+
+      initReviewsSlider();
+
+      // ========================================
+      // SERVICE AREA MAP INTERACTION
+      // ========================================
+      const regionButtons = $$('.legend__item[data-region]');
+      const mapRegions = $$('.service-area__region[id^="region-"]');
+      const mapMarkers = $$('.service-area__marker[data-region]');
+      
+      function setActiveRegion(region) {
+        // Update buttons
+        regionButtons.forEach(btn => {
+          const isActive = btn.dataset.region === region;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-pressed', isActive);
+        });
+        
+        // Update map regions
+        mapRegions.forEach(reg => {
+          const isActive = reg.id === `region-${region}`;
+          reg.classList.toggle('service-area__region--active', isActive);
+        });
+        
+        // Update markers visibility
+        mapMarkers.forEach(marker => {
+          const isInRegion = marker.dataset.region === region;
+          marker.style.opacity = isInRegion ? '1' : '0.4';
+          marker.style.pointerEvents = isInRegion ? 'auto' : 'none';
+        });
+      }
+      
+      regionButtons.forEach(btn => {
+        btn.addEventListener('click', () => setActiveRegion(btn.dataset.region));
+      });
+      
+      // Hover on markers
+      mapMarkers.forEach(marker => {
+        marker.addEventListener('mouseenter', () => {
+          marker.querySelector('.service-area__marker-circle')?.setAttribute('r', 
+            parseFloat(marker.querySelector('.service-area__marker-circle').getAttribute('r')) * 1.3
+          );
+        });
+        marker.addEventListener('mouseleave', () => {
+          const circle = marker.querySelector('.service-area__marker-circle');
+          const originalR = circle.getAttribute('r') / 1.3;
+          circle.setAttribute('r', originalR);
+        });
+      });
+
+      // ========================================
+      // PIPELINE STAGE HOVER EFFECT
+      // ========================================
+      const pipelineStages = $$('.pipeline__stage');
+      pipelineStages.forEach((stage, index) => {
+        stage.addEventListener('mouseenter', () => {
+          pipelineStages.forEach((s, i) => {
+            if (i <= index) s.classList.add('active');
+            else s.classList.remove('active');
+          });
+        });
+      });
+      
+      $('.cad-output__pipeline')?.addEventListener('mouseleave', () => {
+        pipelineStages.forEach((s, i) => {
+          s.classList.toggle('active', i === 0);
+        });
+      });
+
+      // ========================================
+      // PARALLAX EFFECT ON HERO
+      // ========================================
+      const heroImage = $('.hero__image');
+      const heroTechLayer = $('.hero__tech-layer');
+      
+      if (heroImage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.addEventListener('scroll', () => {
+          const scrollY = window.scrollY;
+          const heroHeight = $('.hero')?.offsetHeight || 0;
+          
+          if (scrollY < heroHeight) {
+            const parallaxY = scrollY * 0.3;
+            heroImage.style.transform = `translateY(${parallaxY}px)`;
+            
+            if (heroTechLayer) {
+              heroTechLayer.style.transform = `translateY(${scrollY * 0.15}px)`;
+            }
+          }
+        }, { passive: true });
+      }
+
+      // ========================================
+      // SMOOTH SCROLL FOR ANCHOR LINKS
+      // ========================================
+      $$('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const target = $(targetId);
+          if (target) {
+            e.preventDefault();
+            const navHeight = nav.offsetHeight;
+            const targetPos = target.offsetTop - navHeight;
+            
+            window.scrollTo({
+              top: targetPos,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // ========================================
+      // PERFORMANCE: LAZY LOAD IMAGES
+      // ========================================
+      if ('loading' in HTMLImageElement.prototype) {
+        // Native lazy loading supported
+      } else {
+        // Fallback for older browsers
+        const lazyImages = $$('img[loading="lazy"]');
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src || img.src;
+              imageObserver.unobserve(img);
+            }
+          });
+        });
+        lazyImages.forEach(img => imageObserver.observe(img));
+      }
+
+      // ========================================
+      // INITIALIZE
+      // ========================================
+      document.documentElement.classList.add('js-enabled');
+      
+      // Trigger initial reveal check
+      setTimeout(() => {
+        revealElements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.9) {
+            el.classList.add('visible');
+            revealObserver.unobserve(el);
+          }
+        });
+      }, 100);
+
+    })();
+  
+
+/* ========================================
+   FLOATING CONTACT WIDGET LOGIC
+   ======================================== */
+(function () {
+  const fabMain = document.getElementById('fabMain');
+  const fabOptions = document.getElementById('fabOptions');
+  const fabBackdrop = document.getElementById('fabBackdrop');
+
+  if (!fabMain || !fabOptions || !fabBackdrop) return;
+
+  let isOpen = false;
+
+  function setOpen(open) {
+    isOpen = open;
+    fabMain.setAttribute('aria-expanded', String(open));
+    fabOptions.setAttribute('aria-hidden', String(!open));
+
+    if (open) {
+      fabMain.setAttribute('aria-label', 'Close contact options');
+      fabOptions.querySelector('[role="menuitem"]')?.focus();
+    } else {
+      fabMain.setAttribute('aria-label', 'Open contact options');
+      fabMain.focus();
+    }
+  }
+
+  function toggleFab() {
+    setOpen(!isOpen);
+  }
+
+  fabMain.addEventListener('click', function (e) {
+    e.stopPropagation();
+    toggleFab();
+  });
+
+  fabBackdrop.addEventListener('click', function () {
+    setOpen(false);
+  });
+
+  fabOptions.addEventListener('keydown', function (e) {
+    if (!isOpen) return;
+
+    const items = Array.from(fabOptions.querySelectorAll('[role="menuitem"]'));
+    if (!items.length) return;
+
+    const currentIndex = items.indexOf(document.activeElement);
+
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      items[(currentIndex + 1 + items.length) % items.length].focus();
+    }
+
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      items[(currentIndex - 1 + items.length) % items.length].focus();
+    }
+
+    if (e.key === 'Home') {
+      e.preventDefault();
+      items[0].focus();
+    }
+
+    if (e.key === 'End') {
+      e.preventDefault();
+      items[items.length - 1].focus();
+    }
+
+    if (e.key === 'Tab') {
+      if (e.shiftKey && document.activeElement === items[0]) {
+        e.preventDefault();
+        items[items.length - 1].focus();
+      } else if (!e.shiftKey && document.activeElement === items[items.length - 1]) {
+        e.preventDefault();
+        items[0].focus();
+      }
+    }
+  });
+
+  fabOptions.querySelectorAll('[role="menuitem"]').forEach(function (item) {
+    item.addEventListener('click', function () {
+      setTimeout(function () {
+        if (isOpen) setOpen(false);
+      }, 100);
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && isOpen) {
+      e.preventDefault();
+      setOpen(false);
+    }
+  });
+
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', function () {
+    if (isOpen && Math.abs(window.scrollY - lastScrollY) > 50) {
+      setOpen(false);
+    }
+    lastScrollY = window.scrollY;
+  }, { passive: true });
+})();
+
+</script>
+
+<!-- ========================================
+     FLOATING CONTACT WIDGET (FAB)
+     ======================================== -->
+<div class="fab-widget" id="fabWidget" role="region" aria-label="Quick contact actions">
+  <button class="fab__main" id="fabMain" type="button" aria-expanded="false"
+          aria-controls="fabOptions" aria-label="Open contact options">
+    <span class="fab__icon fab__icon--main" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07
+        19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1
+        4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81
+        2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27
+        a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1
+        22 16.92z"></path>
+      </svg>
+    </span>
+    <span class="fab__icon fab__icon--close" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </span>
+    <span class="fab__pulse" aria-hidden="true"></span>
+  </button>
+
+  <div class="fab__options" id="fabOptions" role="menu" aria-orientation="vertical" aria-hidden="true">
+
+    <a href="https://wa.me/919567919466?text=Hello%20EYE%20J%20Digital%20Land%20Survey%2C%20I%20need%20a%20site%20visit%20for%20my%20project."
+       target="_blank" rel="noopener noreferrer"
+       class="fab__option fab__option--whatsapp" role="menuitem" aria-label="Chat on WhatsApp">
+      <span class="fab__option-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15
+          -.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475
+          -.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.454.13-.606.134-.133.298-.347.446-.52
+          .149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207
+          -.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372
+          -.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2
+          5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085
+          1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.67"/>
+        </svg>
+      </span>
+      <span class="fab__option-content">
+        <span class="fab__option-title">WhatsApp</span>
+        <span class="fab__option-desc">Chat instantly for site visit</span>
+      </span>
+    </a>
+
+    <a href="tel:+919567919466" class="fab__option fab__option--call"
+       role="menuitem" aria-label="Call +91 95679 19466">
+      <span class="fab__option-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07
+          19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1
+          4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81
+          2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27
+          a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1
+          22 16.92z"></path>
+        </svg>
+      </span>
+      <span class="fab__option-content">
+        <span class="fab__option-title">Call Now</span>
+        <span class="fab__option-desc">+91 95679 19466</span>
+      </span>
+    </a>
+
+    <a href="mailto:info@eyejdigitalsurvey.com?subject=Site%20Visit%20Request&body=Hello%20EYE%20J%20Digital%20Land%20Survey%2C%0A%0AI%20would%20like%20to%20request%20a%20site%20visit%20for%20my%20project."
+       class="fab__option fab__option--email" role="menuitem" aria-label="Email us">
+      <span class="fab__option-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+      </span>
+      <span class="fab__option-content">
+        <span class="fab__option-title">Email</span>
+        <span class="fab__option-desc">Send project details</span>
+      </span>
+    </a>
+  </div>
+
+  <div class="fab__backdrop" id="fabBackdrop" aria-hidden="true"></div>
+</div>
+
+</body>
+</html>
